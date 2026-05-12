@@ -1,5 +1,5 @@
 {
   "name": "trident-secops-skills",
-  "version": "0.1.0",
-  "description": "Agent Skills for offensive security, SOC operations, and DevSecOps."
+  "version": "1.0.0",
+  "description": "12 Agent Skills for offensive security, defensive operations, DevSecOps, reverse engineering, programming, prompt enhancement, and multilingual work."
 }
