@@ -18,3 +18,24 @@ description: Natural-language orchestration of security tools through Gemini. Tr
 3. For each stage, output: tool, exact command, why this flag, expected artifact path, runtime cap, and failure handling.
 4. Run idempotently: write to `./runs/<utc>-<goal>/`, dedupe inputs, and emit JSON Lines so later stages can stream-process.
 5. Gate active stages (nuclei, ffuf, fuzzers) on a `--confirm-scope` flag the user must pass.
+
+## Reference Pipelines
+
+- Attack surface: `subfinder | dnsx | httpx | katana | nuclei -severity high,critical`.
+- Web fuzz: `httpx → ffuf -w <wordlist> -mc 200,401,403 -fs <baseline>`.
+- Code & supply chain: `semgrep --config auto`, `gitleaks detect`, `syft dir:. -o spdx-json | grype`.
+- Cloud/IaC: `checkov -d .`, `trivy config .`, `tfsec .`.
+- Container: `trivy image <ref>`, `grype <ref>`, `dockle <ref>`.
+
+## Output Contract
+
+- `plan.md`: stages, commands, rationale, rollback.
+- `artifacts/`: raw tool output, one file per stage.
+- `findings.jsonl`: normalized `{id, target, signal, severity, evidence, source_tool, confidence}`.
+- `summary.md`: top risks, next manual checks, false-positive notes.
+
+## Safety Rails
+
+- Never chain credential brute force, exploit delivery, or persistence steps.
+- Cap concurrency and request rate; default to single-threaded when scope is ambiguous.
+- Strip secrets from logs before writing to disk.
