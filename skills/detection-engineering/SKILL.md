@@ -53,4 +53,10 @@ falsepositives:
 level: medium
 ```
 
-TODO: add a KQL equivalent + test events
+KQL equivalent (untested):
+
+```kql
+DeviceProcessEvents
+| where FileName =~ "powershell.exe"
+| where ProcessCommandLine has " -enc "
+```
