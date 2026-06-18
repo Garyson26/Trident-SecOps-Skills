@@ -34,3 +34,23 @@ description: Detection engineering skill for writing, testing, and tuning Sigma,
 - `coverage.csv`: ATT&CK × rule × status × last_validated.
 - `runbooks/<id>.md`: analyst playbook.
 - `release-notes.md`: what changed, why, expected volume delta.
+
+## Example: Sigma skeleton
+
+```yaml
+title: Suspicious encoded PowerShell
+status: experimental
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\\powershell.exe'
+    CommandLine|contains: ' -enc '
+  condition: selection
+falsepositives:
+  - admin scripts, SCCM
+level: medium
+```
+
+TODO: add a KQL equivalent + test events
