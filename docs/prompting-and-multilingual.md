@@ -96,3 +96,12 @@ Use claude-mythos-emulation to define the assistant style, then use
 prompt-enhancement to convert it into a clean system prompt with tests.
 ```
 
+
+## Contoh (Bahasa Indonesia)
+
+```text
+Gunakan multilingual untuk menerjemahkan ringkasan temuan ini ke Bahasa
+Indonesia. Pertahankan istilah teknis seperti CVE, CVSS, dan IOC.
+```
+
+draft - need a native speaker to check the wording
