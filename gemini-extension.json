@@ -1,5 +1,5 @@
 {
   "name": "trident-secops-skills",
-  "version": "1.0.0",
-  "description": "12 Agent Skills for offensive security, defensive operations, DevSecOps, reverse engineering, programming, prompt enhancement, and multilingual work."
+  "version": "2.0.0",
+  "description": "24 Agent Skills for offensive security, defensive operations, cloud and Kubernetes hardening, detection engineering, threat intel fusion, AI red-teaming, DFIR, bug bounty, Web3 audit, OSINT, API security, purple team automation, programming, reverse engineering, prompt enhancement, and multilingual work."
 }

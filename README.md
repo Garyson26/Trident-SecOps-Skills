@@ -1,8 +1,13 @@
 # Trident SecOps Skills
 
-A collection of 12 `SKILL.md` capabilities for Gemini CLI covering offensive
-security, SOC and DevSecOps work, reverse engineering, secure programming,
+![Trident SecOps Skills banner](assets/banner.svg)
+
+A curated collection of 24 `SKILL.md` capabilities for security work —
+offensive security, SOC and detection engineering, cloud and Kubernetes
+hardening, DFIR, threat intel, secure programming, reverse engineering,
 prompt improvement, and multilingual communication.
+
+Everything installs as a single Gemini CLI extension.
 
 Repository URL:
 
@@ -11,6 +16,35 @@ https://github.com/Garyson26/Trident-SecOps-Skills
 ```
 
 ## What is included
+
+This repository contains 24 skills, grouped below.
+
+### Cyber security automation
+
+- `gemini-tool-orchestrator`: Translate natural-language intent into safe,
+  scoped pipelines of nmap, nuclei, ffuf, semgrep, trivy, and friends.
+- `ai-redteam`: Evaluate prompt injection, jailbreak, tool abuse, agent
+  hijack, and RAG poisoning on LLM and agent systems you own.
+- `threat-intel-fusion`: Collect, normalize, enrich, dedupe, and prioritize
+  IOCs and actor profiles into STIX, Sigma, YARA, and blocklists.
+- `cloud-security-automation`: AWS, Azure, GCP posture, IaC scanning, and
+  drift-and-fix workflows shipped as code, not console clicks.
+- `detection-engineering`: Author and tune Sigma, YARA, Suricata, KQL, SPL,
+  and EQL detections with ATT&CK coverage and tests.
+- `kubernetes-security`: Cluster hardening, admission control with
+  Gatekeeper/Kyverno, runtime defense, and signed-image supply chain.
+- `purple-team-automation`: Link Atomic Red Team, Caldera, and Stratus
+  emulation to detection validation and coverage scoring.
+- `osint-recon-automation`: Passive recon, asset graphing, and exposure
+  monitoring for authorized scopes only.
+- `api-security-automation`: REST, GraphQL, and gRPC assessment covering
+  OWASP API Top 10, JWT abuse, BOLA, mass assignment, and replay.
+- `forensics-triage`: DFIR across disk, memory, network, cloud, and
+  identity with defensible timelines and chain of custody.
+- `bug-bounty-workflow`: Scope-aware recon, dedupe, and high-signal
+  reporting for HackerOne, Bugcrowd, Intigriti, and YesWeHack.
+- `smart-contract-audit`: Solidity, Vyper, and Move audit with Slither,
+  Foundry, Echidna, invariants, MEV, and bridge risk.
 
 ### Core security
 
@@ -35,17 +69,33 @@ https://github.com/Garyson26/Trident-SecOps-Skills
 
 ## Install
 
-```bash
-gemini extensions install https://github.com/Garyson26/Trident-SecOps-Skills --consent
-```
+| Agent | Method | Command |
+| --- | --- | --- |
+| Gemini CLI | extension | `gemini extensions install https://github.com/Garyson26/Trident-SecOps-Skills --consent` |
 
-Manual installs are covered in the [installation guide](docs/installation.md).
+Manual and project-scoped installs are covered in the
+[installation guide](docs/installation.md).
 
 ## Documentation
 
+Read the documentation set for installation details, usage patterns, and skill
+knowledge:
+
+- [Usage](USAGE.md)
+- [Knowledge base](KNOWLEDGE_BASE.md)
+- [Comparison](COMPARISON.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [FAQ](FAQ.md)
+- [Roadmap](ROADMAP.md)
 - [Installation guide](docs/installation.md)
 - [Skill catalog](docs/skill-catalog.md)
+- [CLI usage](docs/cli-usage.md)
 - [Security boundaries](docs/security-boundaries.md)
+- [Cybersecurity workflows](docs/cybersecurity-workflows.md)
+- [Programming workflows](docs/programming-workflows.md)
+- [Prompting and multilingual workflows](docs/prompting-and-multilingual.md)
+- [Troubleshooting](docs/troubleshooting.md)
 
 ## Safety model
 
@@ -54,4 +104,33 @@ and lab-scoped work. They emphasize scope confirmation, safe proof, containment,
 reporting, and remediation. They intentionally avoid unauthorized access,
 stealth, persistence, credential theft, destructive activity, and malware
 improvement.
+
+## Repository layout
+
+Each skill is self-contained:
+
+```text
+skills/
+└── skill-name/
+    └── SKILL.md
+```
+
+Every skill is a directory holding a `SKILL.md` whose YAML frontmatter
+supplies `name` and `description`.
+
+## Source references
+
+The installation docs were checked against each agent's published skill
+format. Gemini references were verified on May 9, 2026.
+
+Gemini CLI:
+
+- Agent Skills overview:
+  https://geminicli.com/docs/cli/skills/
+- Managing Agent Skills:
+  https://geminicli.com/docs/cli/using-agent-skills/
+- Extension reference:
+  https://geminicli.com/docs/extensions/reference/
+- Command reference:
+  https://google-gemini.github.io/gemini-cli/docs/cli/cli-reference.html
 
