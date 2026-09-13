@@ -91,3 +91,13 @@ if [ "$failures" -gt 0 ]; then
 fi
 
 printf 'OK: %d skills validated, no root-level duplicates\n' "$skill_count"
+
+# WIP: relative markdown link check. slow on git bash / windows, not wired in yet
+check_links() {
+  grep -roE '\]\(([^)#]+)\)' --include='*.md' . | while IFS= read -r hit; do
+    file="${hit%%:*}"
+    target="${hit#*](}"; target="${target%)}"
+    case "$target" in http*|mailto:*) continue ;; esac
+    [ -e "$(dirname "$file")/$target" ] || fail "$file: broken link $target"
+  done
+}
