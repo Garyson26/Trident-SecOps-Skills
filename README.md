@@ -7,7 +7,9 @@ offensive security, SOC and detection engineering, cloud and Kubernetes
 hardening, DFIR, threat intel, secure programming, reverse engineering,
 prompt improvement, and multilingual communication.
 
-Everything installs as a single Gemini CLI extension.
+The same skills run on three agents: **Gemini CLI**, **Claude Code**, and
+**OpenAI Codex**. There is one canonical `skills/` tree; each platform reads
+it through a thin adapter.
 
 Repository URL:
 
@@ -72,15 +74,24 @@ This repository contains 24 skills, grouped below.
 | Agent | Method | Command |
 | --- | --- | --- |
 | Gemini CLI | extension | `gemini extensions install https://github.com/Garyson26/Trident-SecOps-Skills --consent` |
+| Claude Code | plugin marketplace | `/plugin marketplace add Garyson26/Trident-SecOps-Skills` then `/plugin install trident-secops-skills@trident-secops` |
+| Codex | installer script | `./install.sh codex` (or `./install.ps1 -Platform codex`) |
 
-Manual and project-scoped installs are covered in the
-[installation guide](docs/installation.md).
+Full instructions, including manual and project-scoped installs, are in
+[INSTALL.md](INSTALL.md).
+
+### Why Codex needs a script
+
+Gemini reads `skills/` and Claude's plugin manifest points at the same
+directory, so both install straight from the repository. Codex discovers
+skills under `.agents/skills`, so the installer copies the tree there.
 
 ## Documentation
 
 Read the documentation set for installation details, usage patterns, and skill
 knowledge:
 
+- [Install](INSTALL.md)
 - [Usage](USAGE.md)
 - [Knowledge base](KNOWLEDGE_BASE.md)
 - [Comparison](COMPARISON.md)
@@ -95,6 +106,7 @@ knowledge:
 - [Cybersecurity workflows](docs/cybersecurity-workflows.md)
 - [Programming workflows](docs/programming-workflows.md)
 - [Prompting and multilingual workflows](docs/prompting-and-multilingual.md)
+- [Development and maintenance](docs/development-and-maintenance.md)
 - [Troubleshooting](docs/troubleshooting.md)
 
 ## Safety model
@@ -112,16 +124,24 @@ Each skill is self-contained:
 ```text
 skills/
 └── skill-name/
-    └── SKILL.md
+    ├── SKILL.md
+    └── agents/
+        └── openai.yaml
 ```
 
-Every skill is a directory holding a `SKILL.md` whose YAML frontmatter
-supplies `name` and `description`.
+`skills/` is the single canonical tree — there are no duplicate copies
+elsewhere in the repository. Every skill is a directory holding a `SKILL.md`
+whose YAML frontmatter supplies `name` and `description`, which is the format
+Gemini CLI, Claude Code, and Codex all read. The `agents/openai.yaml` files
+provide Codex interface metadata and are ignored by the other two agents.
+
+Run `bash scripts/validate.sh` to check the tree.
 
 ## Source references
 
 The installation docs were checked against each agent's published skill
-format. Gemini references were verified on May 9, 2026.
+format. Gemini references were verified on May 9, 2026; Claude and Codex
+references on September 16, 2026.
 
 Gemini CLI:
 
@@ -134,3 +154,14 @@ Gemini CLI:
 - Command reference:
   https://google-gemini.github.io/gemini-cli/docs/cli/cli-reference.html
 
+Claude Code:
+
+- Plugin reference:
+  https://code.claude.com/docs/en/plugins-reference
+- Plugin marketplaces:
+  https://code.claude.com/docs/en/plugin-marketplaces
+
+Codex:
+
+- Building skills:
+  https://learn.chatgpt.com/docs/build-skills
